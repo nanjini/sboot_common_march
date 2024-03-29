@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sboot.backend.common.business.mapper.UserMapper">
+    <!-- 사용자 추가 -->
+    <insert id="save">
+        INSERT INTO users (name, email) VALUES (#{name}, #{email})
+    </insert>
+    <!-- 사용자 전체 조회 -->
+    <select id="findAll" resultType="com.sboot.backend.common.business.model.User">
+        SELECT * FROM users
+    </select>
+    <!-- 사용자 Id로 조회 -->
+    <select id="findById" resultType="com.sboot.backend.common.business.model.User">
+        SELECT * FROM users WHERE id=${id}
+    </select>
+    <!-- 사용자 이름으로 조회 -->
+    <select id="findByName" resultType="com.sboot.backend.common.business.model.User">
+        SELECT * FROM users WHERE name= #{name}
+    </select>
+
+    <!-- 사용자 정보 수정 -->
+    <update id="update" parameterType="com.sboot.backend.common.business.model.User">
+        UPDATE users SET name = #{name}, email = #{email} WHERE id = #{id}
+    </update>
+
+    <!-- 사용자 삭제 -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM users WHERE id = ${id}
+    </delete>
+</mapper>
